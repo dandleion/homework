@@ -83,16 +83,27 @@ st.markdown("""
         font-family: 'Courier New', monospace;
         font-size: 16px;
     }
-       /* ✅ 입력창 주변 박스 제거 */
+    /* 입력창 감싸는 블록 제거 */
     .stTextInput {
         background: transparent !important;
         padding: 0px !important;
         box-shadow: none !important;
     }
-    /* ✅ 검색 결과 위에 생기는 검정 박스 제거 */
-    section.main > div > div > div > div {
-        background: transparent !important;
-        box-shadow: none !important;
+
+    /* ✅ 검색 결과 위쪽 불필요한 검정 박스 제거 */
+    .block-container > div:has(.stTextInput) + div {
+        display: none !important;
+    }
+
+    /* 예: chat-box, 명령어 결과 카드 등은 그대로 유지 */
+    .chat-box {
+        background-color: #2d2d2d;
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid #444;
+        font-family: 'Courier New', monospace;
+        color: #e6e6e6;
+        box-shadow: 0 0 10px #ffd95a66;
     }
     </style>
 """, unsafe_allow_html=True)
