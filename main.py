@@ -83,6 +83,12 @@ st.markdown("""
         font-family: 'Courier New', monospace;
         font-size: 16px;
     }
+       /* ✅ 입력창 주변 박스 제거 */
+    .stTextInput {
+        background: transparent !important;
+        padding: 0px !important;
+        box-shadow: none !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
