@@ -88,7 +88,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 🧠 제목 및 설명
-st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🤖 코딩플랫폼의 내장함수 챗봇</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
 st.markdown('<div class="robot">👾</div>', unsafe_allow_html=True)
 
