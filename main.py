@@ -1,12 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🐣")
+# ✅ set_page_config는 최상단에 있어야 함
+st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
 
-# 이미지 URL
-title_icon_url = "https://i.imgur.com/vOe1b6T.png"   # 병아리 아이콘
-cat_image_url = "https://i.imgur.com/JT6aONc.gif"    # 걷는 고양이 (움직임)
-
-# 명령어 사전
+# 명령어 설명 데이터 (기능 키워드 기반 검색)
 commands = {
     "move": "로봇을 앞으로 한 칸 이동시켜요. (예: 앞으로 가기, 전진)",
     "turn_left": "로봇이 왼쪽으로 90도 돌아요. (예: 왼쪽으로 회전)",
@@ -21,57 +18,28 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 💅 CSS
-st.markdown(f"""
+# 🎨 스타일 커스터마이징
+st.markdown("""
     <style>
-    /* 타이틀바 */
-    .title-bar {{
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        justify-content: center;
-        margin-bottom: 10px;
-    }}
-    .title-bar img {{
-        width: 60px;
-        height: 60px;
-    }}
-    .title-text {{
+    body {
+        background-color: #1e1e1e;
+    }
+    .title {
         font-size: 42px;
-        font-family: 'Courier New', monospace;
+        text-align: center;
         color: #ffd95a;
+        font-family: 'Courier New', monospace;
         font-weight: bold;
-    }}
-
-    .subtitle {{
+        margin-bottom: 0;
+    }
+    .subtitle {
         font-size: 20px;
         text-align: center;
         color: #b3b3b3;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         font-family: 'Courier New', monospace;
-    }}
-
-    .cat-walk-wrapper {{
-        position: relative;
-        height: 100px;
-        overflow: hidden;
-        margin-bottom: 30px;
-    }}
-
-    .cat {{
-        position: absolute;
-        height: 100px;
-        animation: moveLeftRight 6s linear infinite;
-    }}
-
-    @keyframes moveLeftRight {{
-        0% {{ left: 0; }}
-        50% {{ left: calc(100% - 100px); transform: scaleX(1); }}
-        51% {{ transform: scaleX(-1); }}
-        100% {{ left: 0; transform: scaleX(-1); }}
-    }}
-
-    .chat-box {{
+    }
+    .chat-box {
         background-color: #2d2d2d;
         padding: 20px;
         border-radius: 15px;
@@ -79,9 +47,8 @@ st.markdown(f"""
         font-family: 'Courier New', monospace;
         color: #e6e6e6;
         box-shadow: 0 0 10px #ffd95a66;
-    }}
-
-    .command {{
+    }
+    .command {
         background-color: #1a1a1a;
         color: #9cdcfe;
         padding: 8px;
@@ -89,32 +56,25 @@ st.markdown(f"""
         font-family: 'Courier New', monospace;
         font-size: 16px;
         margin-bottom: 10px;
-    }}
+    }
+    .robot {
+        text-align: center;
+        font-size: 70px;
+        margin-top: -10px;
+        margin-bottom: -10px;
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# 🐥 제목
-st.markdown(f"""
-    <div class="title-bar">
-        <img src="{title_icon_url}">
-        <div class="title-text">PlayBot 코드 챗봇</div>
-    </div>
-""", unsafe_allow_html=True)
+# 🧠 제목 및 설명
+st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
+st.markdown('<div class="robot">👾</div>', unsafe_allow_html=True)
 
-# 🌈 부제목
-st.markdown('<div class="subtitle">원하는 기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
-
-# 🐱 걷는 고양이 애니메이션
-st.markdown(f"""
-    <div class="cat-walk-wrapper">
-        <img src="{cat_image_url}" class="cat">
-    </div>
-""", unsafe_allow_html=True)
-
-# 🎯 사용자 입력
+# 🔍 사용자 입력
 user_input = st.text_input("💬 하고 싶은 기능을 입력하세요 (예: 왼쪽으로 회전, 앞으로 가기 등)", "").strip()
 
-# 🔎 결과
+# 📌 검색 처리
 if user_input:
     found = []
     for cmd, desc in commands.items():
@@ -132,6 +92,6 @@ if user_input:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# 💡 도움말
-with st.expander("💡 예시 기능 키워드 보기", expanded=False):
-    st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`")
+# ℹ️ 힌트
+with st.expander("💡 <b>예시 기능 키워드 보기</b>", expanded=False):
+    st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`", unsafe_allow_html=True)
