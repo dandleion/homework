@@ -72,11 +72,11 @@ st.markdown("""
             left: 0;
             transform: scaleX(1);
         }
-        50% {
+        20% {
             left: calc(100vw - 70px);
             transform: scaleX(1);
         }
-        51% {
+        21% {
             transform: scaleX(-1);
         }
         100% {
