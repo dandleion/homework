@@ -73,7 +73,7 @@ st.markdown("""
             transform: scaleX(1);
         }
         50% {
-            left: calc(100vw - 150px);
+            left: calc(100vw - 300px);
             transform: scaleX(1);
         }
         51% {
