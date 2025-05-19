@@ -1,8 +1,11 @@
 import streamlit as st
 
-st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
+st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="👾")
 
-# 명령어 설명 데이터
+# 👾 이미지 URL (문어 느낌 캐릭터)
+robot_image_url = "https://i.imgur.com/wFzX9P8.png"  # 원하는 이미지로 바꿔도 됩니다.
+
+# 명령어 사전
 commands = {
     "move": "로봇을 앞으로 한 칸 이동시켜요. (예: 앞으로 가기, 전진)",
     "turn_left": "로봇이 왼쪽으로 90도 돌아요. (예: 왼쪽으로 회전)",
@@ -17,25 +20,24 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 🎨 스타일 정의
-st.markdown("""
+# 💅 CSS 스타일링
+st.markdown(f"""
     <style>
-    .title {
+    .title {{
         font-size: 42px;
         text-align: center;
         color: #ffd95a;
         font-family: 'Courier New', monospace;
         font-weight: bold;
-        margin-bottom: 0;
-    }
-    .subtitle {
+    }}
+    .subtitle {{
         font-size: 20px;
         text-align: center;
         color: #b3b3b3;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         font-family: 'Courier New', monospace;
-    }
-    .chat-box {
+    }}
+    .chat-box {{
         background-color: #2d2d2d;
         padding: 20px;
         border-radius: 15px;
@@ -43,8 +45,8 @@ st.markdown("""
         font-family: 'Courier New', monospace;
         color: #e6e6e6;
         box-shadow: 0 0 10px #ffd95a66;
-    }
-    .command {
+    }}
+    .command {{
         background-color: #1a1a1a;
         color: #9cdcfe;
         padding: 8px;
@@ -52,38 +54,41 @@ st.markdown("""
         font-family: 'Courier New', monospace;
         font-size: 16px;
         margin-bottom: 10px;
-    }
-    .robot-container {
+    }}
+    .robot-wrapper {{
         display: flex;
         justify-content: center;
-        margin-bottom: -10px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }}
+    .robot {{
+        width: 100px;
         height: 100px;
+        background-image: url('{robot_image_url}');
+        background-size: contain;
+        background-repeat: no-repeat;
+        animation: moveBot 4s ease-in-out infinite;
         position: relative;
-    }
-    .robot {
-        font-size: 60px;
-        animation: moveBot 3s ease-in-out infinite;
-        position: absolute;
-    }
-    @keyframes moveBot {
-        0% { left: 0; }
-        50% { left: 40%; }
-        100% { left: 0; }
-    }
+    }}
+    @keyframes moveBot {{
+        0% {{ left: 0; }}
+        50% {{ left: 40%; }}
+        100% {{ left: 0; }}
+    }}
     </style>
 """, unsafe_allow_html=True)
 
 # 🧠 제목 및 설명
-st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
-st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">👾 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
+st.markdown('<div class="subtitle">원하는 기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
 
-# 👾 애니메이션 로봇
-st.markdown('<div class="robot-container"><div class="robot">🤖</div></div>', unsafe_allow_html=True)
+# 👾 캐릭터 애니메이션
+st.markdown('<div class="robot-wrapper"><div class="robot"></div></div>', unsafe_allow_html=True)
 
 # 🔍 사용자 입력
 user_input = st.text_input("💬 하고 싶은 기능을 입력하세요 (예: 왼쪽으로 회전, 앞으로 가기 등)", "").strip()
 
-# 🔎 검색 결과
+# 🧠 결과 처리
 if user_input:
     found = []
     for cmd, desc in commands.items():
@@ -101,6 +106,6 @@ if user_input:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# 힌트
-with st.expander("💡 <b>예시 기능 키워드 보기</b>", expanded=False):
-    st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`", unsafe_allow_html=True)
+# 🔎 힌트 토글
+with st.expander("💡 예시 기능 키워드 보기", expanded=False):
+    st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`")
