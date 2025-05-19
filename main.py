@@ -1,9 +1,8 @@
 import streamlit as st
 
-# ✅ set_page_config는 최상단에 있어야 함
-st.set_page_config(page_title="코딩 기능 검색 챗봇", page_icon="🤖")
+st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
 
-# 명령어 설명 데이터 (기능 키워드 기반 검색)
+# 명령어 설명 데이터
 commands = {
     "move": "로봇을 앞으로 한 칸 이동시켜요. (예: 앞으로 가기, 전진)",
     "turn_left": "로봇이 왼쪽으로 90도 돌아요. (예: 왼쪽으로 회전)",
@@ -18,7 +17,7 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 🎨 스타일 커스터마이징 (👾 애니메이션 포함)
+# 🎨 스타일 추가
 st.markdown("""
     <style>
     body {
@@ -68,40 +67,31 @@ st.markdown("""
         user-select: none;
     }
     @keyframes moveLeftRight {
-        0% {
-            left: 0;
-            transform: scaleX(1);
-        }
-        50% {
-            left: calc(100vw - 700px);
-            transform: scaleX(1);
-        }
-        51% {
-            transform: scaleX(-1);
-        }
-        100% {
-            left: 0;
-            transform: scaleX(-1);
-        }
+        0% { left: 0; transform: scaleX(1); }
+        50% { left: calc(100vw - 70px); transform: scaleX(1); }
+        51% { transform: scaleX(-1); }
+        100% { left: 0; transform: scaleX(-1); }
     }
 
-    .stTextInput > div > input {
+    /* ✅ 입력창 스타일 - 핑크색 배경 */
+    .stTextInput input {
         background-color: #ffcce0 !important;
-        color: #000000 !important;
+        color: black !important;
+        border-radius: 10px !important;
         border: 1px solid #ff99cc !important;
-        border-radius: 8px !important;
+        padding: 0.5rem !important;
         font-family: 'Courier New', monospace;
-        box-shadow: 0 0 6px #ff99cc55;
+        font-size: 16px;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# 🧠 제목 및 설명
-st.markdown('<div class="title">🤖 코딩플랫폼의 내장함수 챗봇</div>', unsafe_allow_html=True)
+# 🧠 제목
+st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
 st.markdown('<div class="robot">👾</div>', unsafe_allow_html=True)
 
-# 🔍 사용자 입력
+# 🔍 입력창 (밝은 핑크 배경 적용됨)
 user_input = st.text_input("💬 하고 싶은 기능을 입력하세요 (예: 왼쪽으로 회전, 앞으로 가기 등)", "").strip()
 
 # 📌 검색 처리
@@ -122,6 +112,6 @@ if user_input:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ℹ️ 힌트
+# 힌트
 with st.expander("💡 <b>예시 기능 키워드 보기</b>", expanded=False):
     st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`", unsafe_allow_html=True)
