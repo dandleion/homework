@@ -1,9 +1,9 @@
 import streamlit as st
-st.title('program chatbot')
+
+# ✅ set_page_config는 가장 먼저 위치해야 함
 st.set_page_config(page_title="기능으로 찾는 플레이봇 명령어", page_icon="🔍")
 
-
-# 명령어 설명 데이터 (기능 키워드로 검색할 수 있도록 구성)
+# 명령어 설명 데이터
 commands = {
     "move": "로봇을 앞으로 한 칸 이동시켜요. (예: 앞으로 가기, 전진)",
     "turn_left": "로봇이 왼쪽으로 90도 돌아요. (예: 왼쪽으로 회전)",
@@ -18,8 +18,7 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# Streamlit 설정
-
+# 스타일 설정
 st.markdown("""
     <style>
     .title {
@@ -44,7 +43,7 @@ st.markdown("### 🐥 원하는 기능을 입력하면 어떤 명령어를 써�
 # 사용자 입력
 user_input = st.text_input("무엇을 하고 싶나요? (예: 왼쪽으로 회전, 앞으로 가기, 출력 등)").strip()
 
-# 검색 로직: 설명에 키워드 포함된 명령어 찾기
+# 검색 로직
 if user_input:
     found = []
     for cmd, desc in commands.items():
@@ -65,4 +64,3 @@ if user_input:
 # 힌트
 with st.expander("💡 예시 기능 키워드 보기"):
     st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `반복하기`, `조건문`, `출력`")
-
