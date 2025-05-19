@@ -84,6 +84,15 @@ st.markdown("""
             transform: scaleX(-1);
         }
     }
+
+    .stTextInput > div > input {
+        background-color: #ffcce0 !important;
+        color: #000000 !important;
+        border: 1px solid #ff99cc !important;
+        border-radius: 8px !important;
+        font-family: 'Courier New', monospace;
+        box-shadow: 0 0 6px #ff99cc55;
+    }
     </style>
 """, unsafe_allow_html=True)
 
