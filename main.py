@@ -1,9 +1,8 @@
 import streamlit as st
 
-# ✅ set_page_config는 최상단에 있어야 함
 st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
 
-# 명령어 설명 데이터 (기능 키워드 기반 검색)
+# 명령어 설명 데이터
 commands = {
     "move": "로봇을 앞으로 한 칸 이동시켜요. (예: 앞으로 가기, 전진)",
     "turn_left": "로봇이 왼쪽으로 90도 돌아요. (예: 왼쪽으로 회전)",
@@ -18,12 +17,9 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 🎨 스타일 커스터마이징
+# 🎨 스타일 정의
 st.markdown("""
     <style>
-    body {
-        background-color: #1e1e1e;
-    }
     .title {
         font-size: 42px;
         text-align: center;
@@ -57,11 +53,22 @@ st.markdown("""
         font-size: 16px;
         margin-bottom: 10px;
     }
-    .robot {
-        text-align: center;
-        font-size: 70px;
-        margin-top: -10px;
+    .robot-container {
+        display: flex;
+        justify-content: center;
         margin-bottom: -10px;
+        height: 100px;
+        position: relative;
+    }
+    .robot {
+        font-size: 60px;
+        animation: moveBot 3s ease-in-out infinite;
+        position: absolute;
+    }
+    @keyframes moveBot {
+        0% { left: 0; }
+        50% { left: 40%; }
+        100% { left: 0; }
     }
     </style>
 """, unsafe_allow_html=True)
@@ -69,12 +76,14 @@ st.markdown("""
 # 🧠 제목 및 설명
 st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
-st.markdown('<div class="robot">👾</div>', unsafe_allow_html=True)
+
+# 👾 애니메이션 로봇
+st.markdown('<div class="robot-container"><div class="robot">🤖</div></div>', unsafe_allow_html=True)
 
 # 🔍 사용자 입력
 user_input = st.text_input("💬 하고 싶은 기능을 입력하세요 (예: 왼쪽으로 회전, 앞으로 가기 등)", "").strip()
 
-# 📌 검색 처리
+# 🔎 검색 결과
 if user_input:
     found = []
     for cmd, desc in commands.items():
@@ -92,6 +101,6 @@ if user_input:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ℹ️ 힌트
+# 힌트
 with st.expander("💡 <b>예시 기능 키워드 보기</b>", expanded=False):
     st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`", unsafe_allow_html=True)
