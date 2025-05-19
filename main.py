@@ -74,15 +74,7 @@ st.markdown("""
     }
 
     /* ✅ 입력창 스타일 - 핑크색 배경 */
-    .stTextInput input {
-        background-color: #ffcce0 !important;
-        color: black !important;
-        border-radius: 10px !important;
-        border: 1px solid #ff99cc !important;
-        padding: 0.5rem !important;
-        font-family: 'Courier New', monospace;
-        font-size: 16px;
-    }
+   
     </style>
 """, unsafe_allow_html=True)
 
