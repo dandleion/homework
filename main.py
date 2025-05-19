@@ -1,7 +1,7 @@
 import streamlit as st
 
 # ✅ set_page_config는 최상단에 있어야 함
-st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
+st.set_page_config(page_title="코딩 기능 검색 챗봇", page_icon="🤖")
 
 # 명령어 설명 데이터 (기능 키워드 기반 검색)
 commands = {
