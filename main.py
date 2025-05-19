@@ -1,10 +1,10 @@
 import streamlit as st
 
-st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
+st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🐣")
 
-# 👾 움직일 이미지 URL
-robot_image_url = "https://i.imgur.com/wFzX9P8.png"  # 귀여운 캐릭터 이미지
-icon_image_url = "https://i.imgur.com/wFzX9P8.png"   # 제목 옆에 넣을 아이콘 (같은 이미지 사용)
+# 이미지 URL
+title_icon_url = "https://i.imgur.com/vOe1b6T.png"   # 병아리 아이콘
+cat_image_url = "https://i.imgur.com/JT6aONc.gif"    # 걷는 고양이 (움직임)
 
 # 명령어 사전
 commands = {
@@ -21,7 +21,7 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 💅 CSS 스타일링
+# 💅 CSS
 st.markdown(f"""
     <style>
     /* 타이틀바 */
@@ -51,24 +51,24 @@ st.markdown(f"""
         font-family: 'Courier New', monospace;
     }}
 
-    .robot-move-wrapper {{
+    .cat-walk-wrapper {{
         position: relative;
         height: 100px;
         overflow: hidden;
         margin-bottom: 30px;
     }}
 
-    .robot-move {{
+    .cat {{
         position: absolute;
-        width: 100px;
         height: 100px;
-        animation: moveLeftRight 3s ease-in-out infinite;
+        animation: moveLeftRight 6s linear infinite;
     }}
 
     @keyframes moveLeftRight {{
         0% {{ left: 0; }}
-        50% {{ left: calc(100% - 100px); }}
-        100% {{ left: 0; }}
+        50% {{ left: calc(100% - 100px); transform: scaleX(1); }}
+        51% {{ transform: scaleX(-1); }}
+        100% {{ left: 0; transform: scaleX(-1); }}
     }}
 
     .chat-box {{
@@ -93,28 +93,28 @@ st.markdown(f"""
     </style>
 """, unsafe_allow_html=True)
 
-# 🚀 타이틀바 (이미지 + 텍스트)
+# 🐥 제목
 st.markdown(f"""
     <div class="title-bar">
-        <img src="{icon_image_url}">
+        <img src="{title_icon_url}">
         <div class="title-text">PlayBot 코드 챗봇</div>
     </div>
 """, unsafe_allow_html=True)
 
-# 📘 서브타이틀
+# 🌈 부제목
 st.markdown('<div class="subtitle">원하는 기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
 
-# 👾 좌우로 움직이는 로봇 이미지
+# 🐱 걷는 고양이 애니메이션
 st.markdown(f"""
-    <div class="robot-move-wrapper">
-        <img src="{robot_image_url}" class="robot-move">
+    <div class="cat-walk-wrapper">
+        <img src="{cat_image_url}" class="cat">
     </div>
 """, unsafe_allow_html=True)
 
-# 🔍 입력창
+# 🎯 사용자 입력
 user_input = st.text_input("💬 하고 싶은 기능을 입력하세요 (예: 왼쪽으로 회전, 앞으로 가기 등)", "").strip()
 
-# 🔎 검색 결과
+# 🔎 결과
 if user_input:
     found = []
     for cmd, desc in commands.items():
@@ -132,6 +132,6 @@ if user_input:
 
     st.markdown('</div>', unsafe_allow_html=True)
 
-# 💡 예시 보기
+# 💡 도움말
 with st.expander("💡 예시 기능 키워드 보기", expanded=False):
     st.markdown("예: `왼쪽으로 회전`, `앞으로 가기`, `말하기`, `조건문`, `출력`, `무작위 숫자`")
