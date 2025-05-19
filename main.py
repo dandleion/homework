@@ -89,6 +89,11 @@ st.markdown("""
         padding: 0px !important;
         box-shadow: none !important;
     }
+    /* ✅ 검색 결과 위에 생기는 검정 박스 제거 */
+    section.main > div > div > div > div {
+        background: transparent !important;
+        box-shadow: none !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
