@@ -1,6 +1,6 @@
 import streamlit as st
 st.title('program chatbot')
-
+st.set_page_config(page_title="기능으로 찾는 플레이봇 명령어", page_icon="🔍")
 
 
 # 명령어 설명 데이터 (기능 키워드로 검색할 수 있도록 구성)
@@ -19,7 +19,7 @@ commands = {
 }
 
 # Streamlit 설정
-st.set_page_config(page_title="기능으로 찾는 플레이봇 명령어", page_icon="🔍")
+
 st.markdown("""
     <style>
     .title {
