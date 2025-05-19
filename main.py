@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.set_page_config(page_title="PlayBot 기능 검색 챗봇", page_icon="🤖")
+st.set_page_config(page_title="코딩플랫폼 내장함수 검색 챗봇", page_icon="🤖")
 
 # 명령어 설명 데이터
 commands = {
@@ -109,7 +109,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # 🧠 제목
-st.markdown('<div class="title">🤖 PlayBot 코드 챗봇</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🤖 내장함수 검색 챗봇</div>', unsafe_allow_html=True)
 st.markdown('<div class="subtitle">기능을 입력하면 어떤 명령어를 써야 할지 알려줄게요!</div>', unsafe_allow_html=True)
 st.markdown('<div class="robot">👾</div>', unsafe_allow_html=True)
 
