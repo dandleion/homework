@@ -18,7 +18,7 @@ commands = {
     "while": "조건이 참인 동안 반복해요. (예: 반복, 조건반복)"
 }
 
-# 🎨 스타일 커스터마이징
+# 🎨 스타일 커스터마이징 (👾 애니메이션 포함)
 st.markdown("""
     <style>
     body {
@@ -62,6 +62,27 @@ st.markdown("""
         font-size: 70px;
         margin-top: -10px;
         margin-bottom: -10px;
+        position: relative;
+        animation: moveLeftRight 4s ease-in-out infinite;
+        display: inline-block;
+        user-select: none;
+    }
+    @keyframes moveLeftRight {
+        0% {
+            left: 0;
+            transform: scaleX(1);
+        }
+        50% {
+            left: calc(100vw - 70px);
+            transform: scaleX(1);
+        }
+        51% {
+            transform: scaleX(-1);
+        }
+        100% {
+            left: 0;
+            transform: scaleX(-1);
+        }
     }
     </style>
 """, unsafe_allow_html=True)
